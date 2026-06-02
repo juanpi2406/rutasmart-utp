@@ -1122,3 +1122,117 @@ body {
 .button-link{border:0;background:transparent;cursor:pointer;font-family:inherit}.sidebar-nav a{display:block}.sidebar-nav button{font-family:inherit}
 
 .toast{margin-top:12px;color:#155bc9;font-size:13px;font-weight:700;text-align:center}.select-line{font-family:inherit;outline:none}
+
+.button-link {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 2px 0 27px;
+}
+
+.form-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #747b86;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-options .forgot-link {
+  margin: 0;
+}
+
+.primary-button:disabled,
+.social-button:disabled {
+  opacity: .72;
+  cursor: not-allowed;
+}
+
+.inline-link {
+  color: #155bc9;
+  font-size: inherit;
+  font-weight: 700;
+  padding: 0;
+}
+
+.toast {
+  margin: 15px 0 0;
+  text-align: center;
+  color: #155bc9;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.register-card {
+  width: min(470px, 100%);
+}
+
+.register-card .form-heading {
+  margin-bottom: 20px;
+}
+
+.register-card .form-heading h2 {
+  font-size: 31px;
+}
+
+.split-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.register-card .input-wrap {
+  margin-bottom: 12px;
+}
+
+.input-wrap input:only-child {
+  padding-left: 0;
+}
+
+.google-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  background: conic-gradient(#4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
+}
+
+.microsoft-grid {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.microsoft-grid i:nth-child(1) { background: #f25022; }
+.microsoft-grid i:nth-child(2) { background: #7fba00; }
+.microsoft-grid i:nth-child(3) { background: #00a4ef; }
+.microsoft-grid i:nth-child(4) { background: #ffb900; }
+
+@media (max-width: 520px) {
+  .split-inputs {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-options {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .register-card .form-heading h2 {
+    font-size: 28px;
+  }
+}

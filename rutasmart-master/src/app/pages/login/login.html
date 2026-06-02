@@ -1,78 +1,105 @@
-<main class="login-shell">
-    <section class="brand-panel" aria-label="RutaSmart bienvenida">
-      <div class="brand-overlay"></div>
-      <div class="brand-content">
-        <a class="brand-mark" href="javascript:void(0)" aria-label="RutaSmart">
-          <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
-          </svg>
-          <span>RutaSmart</span>
-        </a>
+﻿<main class="login-shell">
+  <section class="brand-panel" aria-label="RutaSmart bienvenida">
+    <div class="brand-overlay"></div>
+    <div class="brand-content">
+      <a class="brand-mark" href="javascript:void(0)" aria-label="RutaSmart">
+        <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+        </svg>
+        <span>RutaSmart</span>
+      </a>
 
-        <div class="welcome-copy">
-          <h1>Bienvenido a<br />RutaSmart</h1>
-          <p>Plataforma inteligente para la gestión<br />de movilidad estudiantil - UTP</p>
-        </div>
-
-        <div class="brand-features" aria-label="Beneficios">
-          <span>Rutas en tiempo real</span>
-          <span>Horarios Actualizados</span>
-          <span>Información confiable</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="form-panel" aria-label="Inicio de sesión">
-      <div class="utp-logo" aria-label="UTP">
-        <span>U</span><span>T</span><span>P</span>
+      <div class="welcome-copy">
+        <h1>Bienvenido a<br />RutaSmart</h1>
+        <p>Plataforma inteligente para la gestión<br />de movilidad estudiantil - UTP</p>
       </div>
 
-      <form class="login-card" (ngSubmit)="goDashboard()">
-        <div class="form-heading">
-          <h2>Iniciar sesión</h2>
-          <p>Ingresa tus credenciales para continuar</p>
-        </div>
+      <div class="brand-features" aria-label="Beneficios">
+        <span>Rutas en tiempo real</span>
+        <span>Horarios Actualizados</span>
+        <span>Información confiable</span>
+      </div>
+    </div>
+  </section>
 
-        <label class="input-wrap" aria-label="Correo institucional">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 12.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2.1c-3.4 0-6.6 1.8-7.7 4.4-.4.9.3 1.7 1.2 1.7h13c.9 0 1.6-.9 1.2-1.7-1.1-2.6-4.3-4.4-7.7-4.4Z" fill="currentColor"/>
-          </svg>
-          <input type="email" name="email" [(ngModel)]="email" placeholder="Correo institucional" autocomplete="email" required />
-        </label>
+  <section class="form-panel" aria-label="Autenticación">
+    <div class="utp-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
 
-        <label class="input-wrap" aria-label="Contraseña">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 10V8a5 5 0 0 1 10 0v2h.4c1 0 1.8.8 1.8 1.8v6.6c0 1-.8 1.8-1.8 1.8H6.6c-1 0-1.8-.8-1.8-1.8v-6.6c0-1 .8-1.8 1.8-1.8H7Zm2.1 0h5.8V8a2.9 2.9 0 0 0-5.8 0v2Z" fill="currentColor"/>
-          </svg>
-          <input type="password" name="password" [(ngModel)]="password" placeholder="Contraseña" autocomplete="current-password" required />
-        </label>
+    <form *ngIf="mode === 'login'" class="login-card" (ngSubmit)="goDashboard()" novalidate>
+      <div class="form-heading">
+        <h2>Iniciar sesión</h2>
+        <p>Ingresa tus credenciales para continuar</p>
+      </div>
 
-        <a class="forgot-link" href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
+      <label class="input-wrap" aria-label="Correo institucional">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2.1c-3.4 0-6.6 1.8-7.7 4.4-.4.9.3 1.7 1.2 1.7h13c.9 0 1.6-.9 1.2-1.7-1.1-2.6-4.3-4.4-7.7-4.4Z" fill="currentColor"/></svg>
+        <input type="email" name="email" [(ngModel)]="email" placeholder="Correo institucional" autocomplete="email" required />
+      </label>
 
-        <button class="primary-button" type="submit">Iniciar sesión</button>
+      <label class="input-wrap" aria-label="Contraseña">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2h.4c1 0 1.8.8 1.8 1.8v6.6c0 1-.8 1.8-1.8 1.8H6.6c-1 0-1.8-.8-1.8-1.8v-6.6c0-1 .8-1.8 1.8-1.8H7Zm2.1 0h5.8V8a2.9 2.9 0 0 0-5.8 0v2Z" fill="currentColor"/></svg>
+        <input type="password" name="password" [(ngModel)]="password" placeholder="Contraseña" autocomplete="current-password" required />
+      </label>
 
-        <p class="divider-text">o continuar con</p>
+      <div class="form-options">
+        <label><input type="checkbox" name="remember" [(ngModel)]="remember" /> Recordarme</label>
+        <button class="forgot-link button-link" type="button" (click)="setMode('forgot')">¿Olvidaste tu contraseña?</button>
+      </div>
 
-        <div class="social-row">
-          <button class="social-button" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#4285F4" d="M21.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.1h5.4a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.6Z"/>
-              <path fill="#34A853" d="M12 22c2.7 0 5-0.9 6.7-2.4l-3.3-2.6c-.9.6-2.1 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3v2.7A10 10 0 0 0 12 22Z"/>
-              <path fill="#FBBC05" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.4H3a10 10 0 0 0 0 9.2l3.4-2.7Z"/>
-              <path fill="#EA4335" d="M12 6c1.5 0 2.8.5 3.9 1.5l2.9-2.9A9.8 9.8 0 0 0 12 2a10 10 0 0 0-9 5.4l3.4 2.7C7.2 7.8 9.4 6 12 6Z"/>
-            </svg>
-            <span>Google</span>
-          </button>
-          <button class="social-button" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#F25022" d="M3 3h8.2v8.2H3z"/><path fill="#7FBA00" d="M12.8 3H21v8.2h-8.2z"/><path fill="#00A4EF" d="M3 12.8h8.2V21H3z"/><path fill="#FFB900" d="M12.8 12.8H21V21h-8.2z"/>
-            </svg>
-            <span>Microsoft</span>
-          </button>
-        </div>
+      <button class="primary-button" type="submit" [disabled]="loading">{{ loading ? 'Validando...' : 'Iniciar sesión' }}</button>
 
-        <p class="contact-copy">¿No tienes cuenta? <a href="javascript:void(0)">Contacta a tu Institución</a></p>
-      <p class="toast" *ngIf="message">{{ message }}</p></form>
-    </section>
-  </main>
-  
+      <p class="divider-text">o continuar con</p>
+
+      <div class="social-row">
+        <button class="social-button" type="button" (click)="connectSocial('google')">
+          <span class="google-dot"></span><span>Google</span>
+        </button>
+        <button class="social-button" type="button" (click)="connectSocial('microsoft')">
+          <span class="microsoft-grid"><i></i><i></i><i></i><i></i></span><span>Microsoft</span>
+        </button>
+      </div>
+
+      <p class="contact-copy">¿No tienes cuenta? <button class="button-link inline-link" type="button" (click)="setMode('register')">Registrar estudiante</button></p>
+      <p class="toast" *ngIf="message">{{ message }}</p>
+    </form>
+
+    <form *ngIf="mode === 'register'" class="login-card register-card" (ngSubmit)="submitRegister()" novalidate>
+      <div class="form-heading">
+        <h2>Registrar estudiante</h2>
+        <p>Crea tu cuenta para acceder a RutaSmart</p>
+      </div>
+
+      <label class="input-wrap"><input type="text" name="name" [(ngModel)]="register.name" placeholder="Nombre completo" required /></label>
+      <label class="input-wrap"><input type="email" name="registerEmail" [(ngModel)]="register.email" placeholder="Correo institucional" required /></label>
+      <div class="split-inputs">
+        <label class="input-wrap"><input type="text" name="code" [(ngModel)]="register.code" placeholder="Código UTP" required /></label>
+        <label class="input-wrap"><input type="tel" name="phone" [(ngModel)]="register.phone" placeholder="Teléfono" required /></label>
+      </div>
+      <label class="input-wrap"><input type="text" name="assignedRoute" [(ngModel)]="register.assignedRoute" placeholder="Ruta asignada" required /></label>
+      <div class="split-inputs">
+        <label class="input-wrap"><input type="password" name="registerPassword" [(ngModel)]="register.password" placeholder="Contraseña" required /></label>
+        <label class="input-wrap"><input type="password" name="confirmPassword" [(ngModel)]="register.confirmPassword" placeholder="Confirmar" required /></label>
+      </div>
+
+      <button class="primary-button" type="submit" [disabled]="loading">{{ loading ? 'Registrando...' : 'Registrar estudiante' }}</button>
+      <p class="contact-copy">¿Ya tienes cuenta? <button class="button-link inline-link" type="button" (click)="setMode('login')">Iniciar sesión</button></p>
+      <p class="toast" *ngIf="message">{{ message }}</p>
+    </form>
+
+    <form *ngIf="mode === 'forgot'" class="login-card" (ngSubmit)="submitForgot()" novalidate>
+      <div class="form-heading">
+        <h2>Recuperar contraseña</h2>
+        <p>Ingresa tu correo para recibir instrucciones</p>
+      </div>
+
+      <label class="input-wrap" aria-label="Correo de recuperación">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm8 7 8-5H4l8 5Zm0 2.2L4 9v8h16V9l-8 5.2Z" fill="currentColor"/></svg>
+        <input type="email" name="recoveryEmail" [(ngModel)]="recoveryEmail" placeholder="Correo institucional" required />
+      </label>
+
+      <button class="primary-button" type="submit" [disabled]="loading">{{ loading ? 'Enviando...' : 'Enviar recuperación' }}</button>
+      <p class="contact-copy"><button class="button-link inline-link" type="button" (click)="setMode('login')">Volver al inicio de sesión</button></p>
+      <p class="toast" *ngIf="message">{{ message }}</p>
+    </form>
+  </section>
+</main>
