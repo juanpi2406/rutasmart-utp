@@ -1,4 +1,4 @@
-﻿import { HttpClient } from '@angular/common/http';
+﻿import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -19,6 +19,25 @@ export interface RegisterPayload {
   phone: string;
   assignedRoute: string;
   password: string;
+}
+
+export interface StudentProfile {
+  id?: number;
+  name: string;
+  email: string;
+  code: string;
+  phone: string;
+  assignedRoute: string;
+}
+
+export interface IncidentRecord {
+  id?: number;
+  type: string;
+  description: string;
+  routeName: string;
+  time: string;
+  status: string;
+  photoName?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -43,7 +62,21 @@ export class ApiService {
     return this.http.get<SocialAuthResponse>(`${this.baseUrl}/auth/social/${provider}`);
   }
 
-  createIncident(type: string, description: string, photoName = ''): Observable<unknown> {
-    return this.http.post(`${this.baseUrl}/incidents`, { type, description, photoName });
+  getProfile(email?: string): Observable<StudentProfile> {
+    const params = email ? new HttpParams().set('email', email) : undefined;
+    return this.http.get<StudentProfile>(`${this.baseUrl}/student/profile`, { params });
+  }
+
+  updateProfile(profile: StudentProfile): Observable<StudentProfile> {
+    const params = profile.email ? new HttpParams().set('email', profile.email) : undefined;
+    return this.http.put<StudentProfile>(`${this.baseUrl}/student/profile`, profile, { params });
+  }
+
+  getIncidents(): Observable<IncidentRecord[]> {
+    return this.http.get<IncidentRecord[]>(`${this.baseUrl}/incidents`);
+  }
+
+  createIncident(type: string, description: string, photoName = ''): Observable<IncidentRecord> {
+    return this.http.post<IncidentRecord>(`${this.baseUrl}/incidents`, { type, description, photoName });
   }
 }

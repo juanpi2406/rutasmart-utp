@@ -4,7 +4,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/student")
@@ -16,13 +20,17 @@ public class StudentController {
     }
 
     @GetMapping("/profile")
-    public StudentProfile profile() {
+    public StudentProfile profile(@RequestParam(required = false) String email) {
+        if (email != null && !email.isBlank()) {
+            return profiles.findByEmailIgnoreCase(email.trim())
+                    .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "No existe un perfil para ese correo"));
+        }
         return profiles.findAll().stream().findFirst().orElseGet(this::createDefaultProfile);
     }
 
     @PutMapping("/profile")
-    public StudentProfile updateProfile(@RequestBody StudentProfile payload) {
-        StudentProfile profile = profile();
+    public StudentProfile updateProfile(@RequestParam(required = false) String email, @RequestBody StudentProfile payload) {
+        StudentProfile profile = profile(email != null ? email : payload.getEmail());
         profile.setName(payload.getName());
         profile.setEmail(payload.getEmail());
         profile.setCode(payload.getCode());

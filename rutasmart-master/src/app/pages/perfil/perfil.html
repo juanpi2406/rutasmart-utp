@@ -1,71 +1,87 @@
-<main class="dashboard-shell profile-shell">
-    <aside class="sidebar">
-      <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
-        <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+﻿<main class="dashboard-shell profile-shell">
+  <aside class="sidebar">
+    <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
+      <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+      </svg>
+      <span>RutaSmart</span>
+    </a>
+    <nav class="sidebar-nav" aria-label="Menú principal">
+      <a routerLink="/dashboard">Mi ruta</a>
+      <a class="active" routerLink="/perfil">Mi perfil</a>
+      <a routerLink="/incidencia">Reportar incidencia</a>
+      <a href="javascript:void(0)">Notificaciones</a>
+      <a routerLink="/reportes">Reportes</a>
+      <a href="javascript:void(0)">Ayuda</a>
+    </nav>
+    <a class="logout-link" routerLink="/login">Cerrar sesión</a>
+  </aside>
+
+  <section class="profile-main">
+    <section class="profile-panel profile-left">
+      <h1>Mi perfil</h1>
+
+      <div class="profile-avatar" aria-label="Avatar usuario">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="60" fill="#7e8da4"/>
+          <circle cx="60" cy="43" r="22" fill="#dbe1e9"/>
+          <path d="M22 106c7.8-24.5 27.1-34 38-34s30.2 9.5 38 34c-10.7 8.8-23.5 14-38 14s-27.3-5.2-38-14Z" fill="#dbe1e9"/>
         </svg>
-        <span>RutaSmart</span>
-      </a>
-      <nav class="sidebar-nav" aria-label="Menú principal">
-        <a routerLink="/dashboard">Mi ruta</a>
-        <a class="active" routerLink="/perfil">Mi perfil</a>
-        <a routerLink="/incidencia">Reportar incidencia</a>
-        <a href="javascript:void(0)">Notificaciones</a>
-        <a routerLink="/reportes">Reportes</a>
-        <a href="javascript:void(0)">Ayuda</a>
-      </nav>
-      <a class="logout-link" routerLink="/login">Cerrar sesión</a>
-    </aside>
+      </div>
 
-    <section class="profile-main">
-      <section class="profile-panel profile-left">
-        <h1>Mi perfil</h1>
+      <p class="toast" *ngIf="loading">Cargando perfil...</p>
+      <p class="toast" *ngIf="message">{{ message }}</p>
 
-        <div class="profile-avatar" aria-label="Avatar usuario">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <circle cx="60" cy="60" r="60" fill="#7e8da4"/>
-            <circle cx="60" cy="43" r="22" fill="#dbe1e9"/>
-            <path d="M22 106c7.8-24.5 27.1-34 38-34s30.2 9.5 38 34c-10.7 8.8-23.5 14-38 14s-27.3-5.2-38-14Z" fill="#dbe1e9"/>
-          </svg>
+      <form class="profile-info" *ngIf="editing; else viewProfile" (ngSubmit)="saveProfile()">
+        <label class="edit-field"><span>Nombre:</span><input [(ngModel)]="profile.name" name="name" required></label>
+        <label class="edit-field"><span>Correo:</span><input [(ngModel)]="profile.email" name="email" required></label>
+        <label class="edit-field"><span>Código:</span><input [(ngModel)]="profile.code" name="code" required></label>
+        <label class="edit-field"><span>Teléfono:</span><input [(ngModel)]="profile.phone" name="phone" required></label>
+        <label class="edit-field"><span>Ruta asignada:</span><input [(ngModel)]="profile.assignedRoute" name="assignedRoute" required></label>
+        <div class="profile-actions">
+          <button class="outline-action edit-profile" type="submit">Guardar Perfil</button>
+          <button class="outline-action edit-profile" type="button" (click)="cancelEdit()">Cancelar</button>
         </div>
+      </form>
 
+      <ng-template #viewProfile>
         <div class="profile-info">
-          <div class="profile-field"><span>Nombre:</span><strong>Juan Pablo Castillo</strong></div>
-          <div class="profile-field"><span>Correo:</span><strong>Juanpi_2406@hotmail.com</strong></div>
-          <div class="profile-field"><span>Código:</span><strong>U23252915</strong></div>
-          <div class="profile-field"><span>Teléfono:</span><strong>944475928</strong></div>
-          <div class="profile-field"><span>Ruta asignada:</span><strong>Sur de lima</strong></div>
+          <div class="profile-field"><span>Nombre:</span><strong>{{ profile.name }}</strong></div>
+          <div class="profile-field"><span>Correo:</span><strong>{{ profile.email }}</strong></div>
+          <div class="profile-field"><span>Código:</span><strong>{{ profile.code }}</strong></div>
+          <div class="profile-field"><span>Teléfono:</span><strong>{{ profile.phone }}</strong></div>
+          <div class="profile-field"><span>Ruta asignada:</span><strong>{{ profile.assignedRoute }}</strong></div>
         </div>
-
-        <button class="outline-action edit-profile" type="button">Editar Perfil</button>
-      </section>
-
-      <section class="profile-panel profile-right">
-        <header class="settings-header">
-          <h1>Configuración</h1>
-          <div class="utp-logo static-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
-        </header>
-
-        <div class="settings-list">
-          <article class="settings-card">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.7 2.7 0 0 0 2.6-2h-5.2A2.7 2.7 0 0 0 12 22Zm7.1-5.6-1.6-1.7V10a5.6 5.6 0 0 0-4.2-5.4V3a1.3 1.3 0 0 0-2.6 0v1.6A5.6 5.6 0 0 0 6.5 10v4.7l-1.6 1.7V18h14.2v-1.6Z" fill="currentColor"/></svg>
-            <div><strong>Notificaciones</strong><p>Configura tu preferencia</p></div>
-          </article>
-          <article class="settings-card">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2h.4c1 0 1.8.8 1.8 1.8v6.6c0 1-.8 1.8-1.8 1.8H6.6c-1 0-1.8-.8-1.8-1.8v-6.6c0-1 .8-1.8 1.8-1.8H7Zm2.1 0h5.8V8a2.9 2.9 0 0 0-5.8 0v2Z" fill="currentColor"/></svg>
-            <div><strong>Seguridad</strong><p>Cambia tu contraseña</p></div>
-          </article>
-          <article class="settings-card">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 5 5.1v5.3c0 4.7 3 9.1 7 10.6 4-1.5 7-5.9 7-10.6V5.1L12 2Zm0 4.2a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4Zm0 13.1a8.1 8.1 0 0 1-5.2-4.1c1.2-1.6 3.2-2.5 5.2-2.5s4 .9 5.2 2.5a8.1 8.1 0 0 1-5.2 4.1Z" fill="currentColor"/></svg>
-            <div><strong>Privacidad</strong><p>Gestiona tu información</p></div>
-          </article>
-          <article class="settings-card">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.8 8.8 0 0 0-8.8 8.8v3.5c0 1.4 1.1 2.5 2.5 2.5H7v-7H5.4A6.6 6.6 0 0 1 12 5.2a6.6 6.6 0 0 1 6.6 5.6H17v7h1.7a2.5 2.5 0 0 0 2.5-2.5v-3.5A8.8 8.8 0 0 0 12 3Zm-1.5 15.6h3v1.7h-3v-1.7Z" fill="currentColor"/></svg>
-            <div><strong>Ayuda</strong><p>Preguntas frecuentes</p></div>
-          </article>
-        </div>
-
-        <button class="outline-action logout-action" type="button">Cerrar sesión</button>
-      </section>
+        <button class="outline-action edit-profile" type="button" (click)="startEdit()">Editar Perfil</button>
+      </ng-template>
     </section>
-  </main>
+
+    <section class="profile-panel profile-right">
+      <header class="settings-header">
+        <h1>Configuración</h1>
+        <div class="utp-logo static-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
+      </header>
+
+      <div class="settings-list">
+        <article class="settings-card">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.7 2.7 0 0 0 2.6-2h-5.2A2.7 2.7 0 0 0 12 22Zm7.1-5.6-1.6-1.7V10a5.6 5.6 0 0 0-4.2-5.4V3a1.3 1.3 0 0 0-2.6 0v1.6A5.6 5.6 0 0 0 6.5 10v4.7l-1.6 1.7V18h14.2v-1.6Z" fill="currentColor"/></svg>
+          <div><strong>Notificaciones</strong><p>Configura tu preferencia</p></div>
+        </article>
+        <article class="settings-card">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2h.4c1 0 1.8.8 1.8 1.8v6.6c0 1-.8 1.8-1.8 1.8H6.6c-1 0-1.8-.8-1.8-1.8v-6.6c0-1 .8-1.8 1.8-1.8H7Zm2.1 0h5.8V8a2.9 2.9 0 0 0-5.8 0v2Z" fill="currentColor"/></svg>
+          <div><strong>Seguridad</strong><p>Cambia tu contraseña</p></div>
+        </article>
+        <article class="settings-card">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 5 5.1v5.3c0 4.7 3 9.1 7 10.6 4-1.5 7-5.9 7-10.6V5.1L12 2Zm0 4.2a3.2 3.2 0 1 1 0 6.4 3.2 3.2 0 0 1 0-6.4Zm0 13.1a8.1 8.1 0 0 1-5.2-4.1c1.2-1.6 3.2-2.5 5.2-2.5s4 .9 5.2 2.5a8.1 8.1 0 0 1-5.2 4.1Z" fill="currentColor"/></svg>
+          <div><strong>Privacidad</strong><p>Gestiona tu información</p></div>
+        </article>
+        <article class="settings-card">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8.8 8.8 0 0 0-8.8 8.8v3.5c0 1.4 1.1 2.5 2.5 2.5H7v-7H5.4A6.6 6.6 0 0 1 12 5.2a6.6 6.6 0 0 1 6.6 5.6H17v7h1.7a2.5 2.5 0 0 0 2.5-2.5v-3.5A8.8 8.8 0 0 0 12 3Zm-1.5 15.6h3v1.7h-3v-1.7Z" fill="currentColor"/></svg>
+          <div><strong>Ayuda</strong><p>Preguntas frecuentes</p></div>
+        </article>
+      </div>
+
+      <button class="outline-action logout-action" type="button" routerLink="/login">Cerrar sesión</button>
+    </section>
+  </section>
+</main>

@@ -53,7 +53,10 @@ export class LoginComponent {
 
     this.loading = true;
     this.api.login(this.email, this.password).subscribe({
-      next: () => this.router.navigateByUrl('/dashboard'),
+      next: () => {
+        localStorage.setItem('rutasmart.email', this.email);
+        this.router.navigateByUrl('/dashboard');
+      },
       error: () => {
         this.loading = false;
         this.message = 'No se pudo iniciar sesión. Revisa el backend o tus credenciales.';
@@ -76,6 +79,7 @@ export class LoginComponent {
         this.message = response.message;
         this.email = payload.email;
         this.password = payload.password;
+        localStorage.setItem('rutasmart.email', payload.email);
         this.setMode('login');
       },
       error: (error) => {
