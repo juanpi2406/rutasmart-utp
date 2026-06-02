@@ -1,0 +1,30 @@
+﻿# Dependencies
+node_modules/
+
+# Angular build/cache
+dist/
+.angular/
+
+# Java build
+ target/
+**/target/
+
+# Local tools
+.tools/
+
+# Logs
+*.log
+
+# Local secret launchers
+run-supabase.bat
+**/run-supabase.bat
+
+# IDE/system
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Old prototype folder
+frontend/

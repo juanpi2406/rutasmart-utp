@@ -1,0 +1,80 @@
+<main class="dashboard-shell incident-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
+        <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+        </svg>
+        <span>RutaSmart</span>
+      </a>
+      <nav class="sidebar-nav" aria-label="Menú principal">
+        <a routerLink="/dashboard">Mi ruta</a>
+        <a routerLink="/perfil">Mi perfil</a>
+        <a class="active" routerLink="/incidencia">Reportar incidencia</a>
+        <a href="javascript:void(0)">Notificaciones</a>
+        <a routerLink="/reportes">Reportes</a>
+        <a href="javascript:void(0)">Ayuda</a>
+      </nav>
+      <a class="logout-link" routerLink="/login">Cerrar sesión</a>
+    </aside>
+
+    <section class="incident-main">
+      <section class="incident-panel incident-form-panel">
+        <header class="incident-title">
+          <h1>Reportar incidencia</h1>
+          <p>Informar cualquier eventualidad</p>
+        </header>
+
+        <form class="incident-form" (ngSubmit)="sendReport()">
+          <label class="incident-field">
+            <span>Tipo de incidencia</span>
+            <select class="select-line" name="type" [(ngModel)]="type"><option>Problema con el Bus</option><option>Paradero cerrado</option><option>Trafico pesado</option><option>Retraso</option></select>
+          </label>
+
+          <label class="incident-field">
+            <span>Descripción</span>
+            <textarea aria-label="Descripción" name="description" [(ngModel)]="description"></textarea>
+          </label>
+
+          <label class="incident-field">
+            <span>Adjuntar foto (opcional)</span>
+            <button class="file-line" type="button">Seleccionar archivo <strong>&gt;</strong></button>
+          </label>
+
+          <button class="send-report" type="submit">Enviar Reporte</button>
+        <p class="toast" *ngIf="message">{{ message }}</p></form>
+      </section>
+
+      <section class="incident-panel incident-list-panel">
+        <header class="incident-right-header">
+          <h1>Incidencias con el Bus</h1>
+          <div class="utp-logo static-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
+        </header>
+
+        <div class="incident-list">
+          <article class="incident-card">
+            <div class="incident-icon icon-roadwork">
+              <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M21 4 39 36H3L21 4Z" fill="#f2a51f"/><path d="M21 12v12" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/><circle cx="21" cy="30" r="2.2" fill="#ffffff"/></svg>
+            </div>
+            <div class="incident-copy"><strong>Problema con el Bus</strong><span>07:05 am</span></div>
+            <em class="status-red">En revisión</em>
+          </article>
+
+          <article class="incident-card">
+            <div class="incident-icon icon-sign">
+              <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M21 5 36 20 21 35 6 20 21 5Z" fill="#f1c232"/><path d="M14 20h14" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/></svg>
+            </div>
+            <div class="incident-copy"><strong>Paradero cerrado</strong><span>06:50 am</span></div>
+            <em class="status-green">Resuelto</em>
+          </article>
+
+          <article class="incident-card">
+            <div class="incident-icon icon-traffic">
+              <svg viewBox="0 0 42 42" aria-hidden="true"><path d="M8 23h24l3 6v6h-4v-3H11v3H7v-6l3-6Z" fill="#5f6b7a"/><path d="M12 17h12l4 6H9l3-6Z" fill="#8c98a8"/><circle cx="13" cy="30" r="3" fill="#ffffff"/><circle cx="30" cy="30" r="3" fill="#ffffff"/></svg>
+            </div>
+            <div class="incident-copy"><strong>Trafico pesado</strong><span>06:00 am</span></div>
+            <em class="status-green">Resuelto</em>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>

@@ -1,0 +1,66 @@
+<main class="dashboard-shell reports-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
+        <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+        </svg>
+        <span>RutaSmart</span>
+      </a>
+      <nav class="sidebar-nav" aria-label="Menú principal">
+        <a routerLink="/dashboard">Mi ruta</a>
+        <a routerLink="/perfil">Mi perfil</a>
+        <a routerLink="/incidencia">Reportar incidencia</a>
+        <a href="javascript:void(0)">Notificaciones</a>
+        <a class="active" routerLink="/reportes">Reportes</a>
+        <a href="javascript:void(0)">Ayuda</a>
+      </nav>
+      <a class="logout-link" routerLink="/login">Cerrar sesión</a>
+    </aside>
+
+    <section class="reports-main">
+      <header class="reports-header">
+        <div>
+          <h1>Reportes</h1>
+          <p>Resumen de movilidad e incidencias del transporte universitario.</p>
+        </div>
+        <div class="utp-logo static-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
+      </header>
+
+      <section class="reports-summary" aria-label="Resumen de reportes">
+        <article class="report-kpi"><span>Viajes registrados</span><strong>128</strong><p>Esta semana</p></article>
+        <article class="report-kpi"><span>Incidencias</span><strong>12</strong><p>4 pendientes</p></article>
+        <article class="report-kpi"><span>Puntualidad</span><strong>86%</strong><p>Promedio diario</p></article>
+      </section>
+
+      <section class="reports-content">
+        <article class="reports-card reports-chart-card">
+          <div class="reports-card-header">
+            <h2>Actividad de rutas</h2>
+            <button type="button">Semana</button>
+          </div>
+          <div class="bar-chart" aria-label="Gráfico de actividad por día">
+            <div style="--h: 46%"><span>Lun</span></div>
+            <div style="--h: 68%"><span>Mar</span></div>
+            <div style="--h: 54%"><span>Mié</span></div>
+            <div style="--h: 82%"><span>Jue</span></div>
+            <div style="--h: 74%"><span>Vie</span></div>
+            <div style="--h: 38%"><span>Sáb</span></div>
+          </div>
+        </article>
+
+        <article class="reports-card reports-table-card">
+          <div class="reports-card-header">
+            <h2>Últimos reportes</h2>
+            <button type="button">Exportar</button>
+          </div>
+          <div class="report-table">
+            <div class="report-row report-head"><span>Tipo</span><span>Ruta</span><span>Fecha</span><span>Estado</span></div>
+            <div class="report-row"><span>Retraso</span><span>Ruta Norte</span><span>Hoy</span><strong class="pending">Pendiente</strong></div>
+            <div class="report-row"><span>Paradero</span><span>Ruta Sur</span><span>Ayer</span><strong class="done">Resuelto</strong></div>
+            <div class="report-row"><span>Tráfico</span><span>Ruta Este</span><span>29/05</span><strong class="done">Resuelto</strong></div>
+            <div class="report-row"><span>Bus lleno</span><span>Ruta Norte</span><span>28/05</span><strong class="review">En revisión</strong></div>
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>

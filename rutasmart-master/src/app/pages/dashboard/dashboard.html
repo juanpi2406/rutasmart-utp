@@ -1,0 +1,82 @@
+<main class="dashboard-shell">
+    <aside class="sidebar">
+      <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
+        <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+        </svg>
+        <span>RutaSmart</span>
+      </a>
+      <nav class="sidebar-nav" aria-label="Menú principal">
+        <a class="active" routerLink="/dashboard">Mi ruta</a>
+        <a routerLink="/perfil">Mi perfil</a>
+        <a routerLink="/incidencia">Reportar incidencia</a>
+        <a href="javascript:void(0)">Notificaciones</a>
+        <a routerLink="/reportes">Reportes</a>
+        <a href="javascript:void(0)">Ayuda</a>
+      </nav>
+      <a class="logout-link" routerLink="/login">Cerrar sesión</a>
+    </aside>
+
+    <section class="dashboard-main">
+      <header class="dashboard-header">
+        <div class="hello-copy">
+          <h1>¡Hola Juan !</h1>
+          <p>Aquí tienes el resumen del transporte de hoy.</p>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" type="button" aria-label="Notificaciones">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.6 2.6 0 0 0 2.5-2h-5a2.6 2.6 0 0 0 2.5 2Zm7-6.2-1.5-1.6V10a5.6 5.6 0 0 0-4.3-5.5V3a1.2 1.2 0 0 0-2.4 0v1.5A5.6 5.6 0 0 0 6.5 10v4.2L5 15.8V18h14v-2.2Z" fill="currentColor"/></svg>
+          </button>
+          <button class="icon-button" type="button" aria-label="Alertas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.6C4 4.1 5.1 3 6.6 3h10.8C18.9 3 20 4.1 20 5.6v7.8c0 1.5-1.1 2.6-2.6 2.6H10l-4.5 3.2c-.6.4-1.5 0-1.5-.8V5.6Zm4 3.1h8v-2H8v2Zm0 4h5.8v-2H8v2Z" fill="currentColor"/></svg>
+          </button>
+          <div class="avatar" aria-label="Usuario"></div>
+        </div>
+      </header>
+
+      <section class="summary-grid" aria-label="Resumen">
+        <article class="summary-card"><h2>Mi ruta</h2><strong class="text-blue">Ruta Norte</strong><p>Paradero Av Pachacutec</p></article>
+        <article class="summary-card"><h2>Próximo Bus</h2><strong>07:15 AM</strong><p>En 5 minutos</p></article>
+        <article class="summary-card"><h2>Estado del Bus</h2><strong class="text-green">En camino</strong><p>A 1.2 km de ti</p></article>
+        <article class="summary-card"><h2>Tiempo estimado</h2><strong>15 minutos</strong><p>Llegada a UTP</p></article>
+      </section>
+
+      <section class="content-row">
+        <article class="map-card">
+          <h2>Ubicación del Bus en tiempo real</h2>
+          <div class="map-canvas" aria-label="Mapa de ruta en tiempo real">
+            <svg viewBox="0 0 760 360" role="img" aria-label="Mapa con ruta azul y bus">
+              <rect width="760" height="360" fill="#eef1ee"/>
+              <path d="M0 62h760M0 132h760M0 214h760M0 292h760" stroke="#d8ded9" stroke-width="12"/>
+              <path d="M80 0v360M190 0v360M318 0v360M468 0v360M620 0v360" stroke="#d8ded9" stroke-width="12"/>
+              <path d="M0 95h760M0 250h760" stroke="#ffffff" stroke-width="5"/>
+              <path d="M126 0v360M258 0v360M392 0v360M560 0v360" stroke="#ffffff" stroke-width="5"/>
+              <path d="M52 313C120 262 152 232 218 231c72-1 104 38 159 25 69-16 80-96 146-112 57-14 103 22 172-20" fill="none" stroke="#1d64d8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M52 313C120 262 152 232 218 231c72-1 104 38 159 25 69-16 80-96 146-112 57-14 103 22 172-20" fill="none" stroke="#75a7ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="52" cy="313" r="13" fill="#155bc9" stroke="#fff" stroke-width="5"/>
+              <circle cx="218" cy="231" r="13" fill="#155bc9" stroke="#fff" stroke-width="5"/>
+              <circle cx="523" cy="144" r="13" fill="#155bc9" stroke="#fff" stroke-width="5"/>
+              <g transform="translate(671 100)">
+                <circle cx="24" cy="24" r="25" fill="#155bc9"/>
+                <path d="M13 15h18c3.5 0 5.5 2 5.5 5.2V31c0 1.2-.9 2.2-2.2 2.2h-.5v2c0 1-.8 1.7-1.7 1.7s-1.7-.7-1.7-1.7v-2H17.6v2c0 1-.8 1.7-1.7 1.7s-1.7-.7-1.7-1.7v-2h-.5c-1.3 0-2.2-1-2.2-2.2V20.2c0-3.2 2-5.2 5.5-5.2Zm1.6 4v8.1h20.8V19H14.6Zm2.4 14.1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm17.9 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="#fff"/>
+              </g>
+            </svg>
+          </div>
+        </article>
+
+        <article class="departures-card">
+          <h2>Próximas salidas</h2>
+          <div class="timeline">
+            <div class="time-item"><span></span><strong>07:15 AM</strong></div>
+            <div class="time-item"><span></span><strong>07:35 AM</strong></div>
+            <div class="time-item"><span></span><strong>07:55 AM</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="dashboard-footer">
+        <div class="notice-title"><span class="info-icon">i</span><strong>Avisos importantes</strong></div>
+        <div class="utp-logo static-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
+      </footer>
+    </section>
+  </main>
