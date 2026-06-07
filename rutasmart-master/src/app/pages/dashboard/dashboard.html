@@ -14,15 +14,22 @@
         <a routerLink="/reportes">Reportes</a>
         <a href="javascript:void(0)">Ayuda</a>
       </nav>
-      <a class="logout-link" routerLink="/login">Cerrar sesión</a>
+      <a
+    class="logout-link"
+    href="javascript:void(0)"
+    (click)="logout()">
+
+    Cerrar sesión
+
+</a>
     </aside>
 
     <section class="dashboard-main">
       <header class="dashboard-header">
-        <div class="hello-copy">
-          <h1>¡Hola Juan !</h1>
+      <div class="hello-copy">
+          <h1>¡Hola {{ nombre }}!</h1>
           <p>Aquí tienes el resumen del transporte de hoy.</p>
-        </div>
+      </div>
         <div class="header-actions">
           <button class="icon-button" type="button" aria-label="Notificaciones">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.6 2.6 0 0 0 2.5-2h-5a2.6 2.6 0 0 0 2.5 2Zm7-6.2-1.5-1.6V10a5.6 5.6 0 0 0-4.3-5.5V3a1.2 1.2 0 0 0-2.4 0v1.5A5.6 5.6 0 0 0 6.5 10v4.2L5 15.8V18h14v-2.2Z" fill="currentColor"/></svg>
@@ -35,10 +42,50 @@
       </header>
 
       <section class="summary-grid" aria-label="Resumen">
-        <article class="summary-card"><h2>Mi ruta</h2><strong class="text-blue">Ruta Norte</strong><p>Paradero Av Pachacutec</p></article>
-        <article class="summary-card"><h2>Próximo Bus</h2><strong>07:15 AM</strong><p>En 5 minutos</p></article>
-        <article class="summary-card"><h2>Estado del Bus</h2><strong class="text-green">En camino</strong><p>A 1.2 km de ti</p></article>
-        <article class="summary-card"><h2>Tiempo estimado</h2><strong>15 minutos</strong><p>Llegada a UTP</p></article>
+        <article class="summary-card">
+    <h2>Mi ruta</h2>
+
+    <strong class="text-blue">
+        {{ ruta }}
+    </strong>
+
+    <p>
+        {{ paradero }}
+    </p>
+</article>
+       <article class="summary-card">
+    <h2>Próximo Bus</h2>
+
+    <strong>
+        {{ proximoBus }}
+    </strong>
+
+    <p>
+        En 5 minutos
+    </p>
+</article>
+        <article class="summary-card">
+    <h2>Estado del Bus</h2>
+
+    <strong class="text-green">
+        {{ estadoBus }}
+    </strong>
+
+    <p>
+        A {{ distancia }} de ti
+    </p>
+</article>
+       <article class="summary-card">
+    <h2>Tiempo estimado</h2>
+
+    <strong>
+        {{ tiempoEstimado }}
+    </strong>
+
+    <p>
+        Llegada a UTP
+    </p>
+</article>
       </section>
 
       <section class="content-row">
@@ -66,17 +113,37 @@
 
         <article class="departures-card">
           <h2>Próximas salidas</h2>
-          <div class="timeline">
-            <div class="time-item"><span></span><strong>07:15 AM</strong></div>
-            <div class="time-item"><span></span><strong>07:35 AM</strong></div>
-            <div class="time-item"><span></span><strong>07:55 AM</strong></div>
-          </div>
+<div class="timeline">
+
+    <div
+        class="time-item"
+        *ngFor="let salida of proximasSalidas">
+
+        <span></span>
+
+        <strong>
+            {{ salida }}
+        </strong>
+
+    </div>
+
+</div>
         </article>
       </section>
 
-      <footer class="dashboard-footer">
-        <div class="notice-title"><span class="info-icon">i</span><strong>Avisos importantes</strong></div>
-        <div class="utp-logo static-logo" aria-label="UTP"><span>U</span><span>T</span><span>P</span></div>
-      </footer>
-    </section>
-  </main>
+   <footer class="dashboard-footer">
+    <div class="notice-title">
+        <span class="info-icon">i</span>
+        <strong>Avisos importantes</strong>
+    </div>
+
+    <div class="utp-logo static-logo" aria-label="UTP">
+        <span>U</span>
+        <span>T</span>
+        <span>P</span>
+    </div>
+</footer>
+
+</section>
+
+</main>

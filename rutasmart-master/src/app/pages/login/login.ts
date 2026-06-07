@@ -53,10 +53,34 @@ export class LoginComponent {
 
     this.loading = true;
     this.api.login(this.email, this.password).subscribe({
-      next: () => {
-        localStorage.setItem('rutasmart.email', this.email);
-        this.router.navigateByUrl('/dashboard');
-      },
+   next: (response) => {
+
+  this.loading = false;
+
+  if (response.mensaje === 'Login exitoso') {
+
+    localStorage.setItem('rutasmart.email', this.email);
+
+    localStorage.setItem(
+      'rutasmart.nombre',
+      response.nombre
+    );
+
+    localStorage.setItem(
+      'rutasmart.rol',
+      response.rol
+    );
+
+    this.router.navigateByUrl('/dashboard');
+
+  }
+  else {
+
+    this.message = response.mensaje;
+
+  }
+
+},
       error: () => {
         this.loading = false;
         this.message = 'No se pudo iniciar sesión. Revisa el backend o tus credenciales.';

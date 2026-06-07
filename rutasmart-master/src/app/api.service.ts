@@ -2,6 +2,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export interface DashboardData {
+  nombre: string;
+  ruta: string;
+  paradero: string;
+  proximoBus: string;
+  estadoBus: string;
+  distancia: string;
+  tiempoEstimado: string;
+  proximasSalidas: string[];
+}
+
 export interface AuthMessageResponse {
   message: string;
 }
@@ -40,15 +51,27 @@ export interface IncidentRecord {
   photoName?: string;
 }
 
+export interface LoginResponse {
+  nombre: string;
+  rol: string;
+  mensaje: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  private readonly baseUrl = 'http://localhost:8080/api';
+  private readonly baseUrl = 'http://localhost:8081/api';
 
   constructor(private readonly http: HttpClient) {}
 
-  login(email: string, password: string): Observable<{ message: string; role: string }> {
-    return this.http.post<{ message: string; role: string }>(`${this.baseUrl}/auth/login`, { email, password });
-  }
+login(correo: string, password: string): Observable<LoginResponse> {
+  return this.http.post<LoginResponse>(
+    `${this.baseUrl}/auth/login`,
+    {
+      correo: correo,
+      password: password
+    }
+  );
+}
 
   registerStudent(payload: RegisterPayload): Observable<AuthMessageResponse> {
     return this.http.post<AuthMessageResponse>(`${this.baseUrl}/auth/register`, payload);
@@ -79,4 +102,23 @@ export class ApiService {
   createIncident(type: string, description: string, photoName = ''): Observable<IncidentRecord> {
     return this.http.post<IncidentRecord>(`${this.baseUrl}/incidents`, { type, description, photoName });
   }
+
+
+obtenerRutas() {
+  return this.http.get(`${this.baseUrl}/rutas`);
+}
+
+obtenerViajes() {
+  return this.http.get(`${this.baseUrl}/viajes`);
+}
+
+obtenerReservas() {
+  return this.http.get(`${this.baseUrl}/reservas`);
+}
+
+obtenerDashboard(): Observable<DashboardData> {
+  return this.http.get<DashboardData>(
+    'http://localhost:8081/api/dashboard'
+  );
+}
 }

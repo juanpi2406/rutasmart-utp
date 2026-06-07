@@ -1,0 +1,17 @@
+# Angular
+node_modules/
+.angular/
+dist/
+
+# Spring Boot
+target/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
