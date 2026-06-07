@@ -1120,3 +1120,64 @@ body {
   .report-row { grid-template-columns: 1fr 1fr; gap: 8px 14px; padding: 12px 0; }
 }
 .button-link{border:0;background:transparent;cursor:pointer;font-family:inherit}.sidebar-nav a{display:block}.sidebar-nav button{font-family:inherit}
+
+
+.viajes-section{
+
+  margin-top:20px;
+
+}
+
+.section-title{
+
+  margin-bottom:15px;
+
+  font-size:22px;
+
+  font-weight:700;
+
+}
+
+.reserve-button{
+
+  width:100%;
+
+  margin-top:12px;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:#155bc9;
+
+  color:white;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+.reserve-button:hover{
+
+  background:#0d4ba8;
+
+}
+
+.mensaje-reserva{
+
+  margin-bottom:15px;
+
+  padding:12px;
+
+  border-radius:8px;
+
+  background:#e8f3ff;
+
+  color:#155bc9;
+
+  font-weight:600;
+
+}

@@ -13,6 +13,29 @@ export interface DashboardData {
   proximasSalidas: string[];
 }
 
+export interface Programacion {
+  ruta: string;
+  horaSalida: string;
+  horaLlegadaEstimada: string;
+  diasOperacion: string;
+  estado: boolean;
+}
+
+export interface UbicacionBus {
+
+  idUbicacion: number;
+
+  idViaje: number;
+
+  latitud: number;
+
+  longitud: number;
+
+  velocidad: number;
+
+  fechaHora: string;
+
+}
 export interface AuthMessageResponse {
   message: string;
 }
@@ -52,9 +75,17 @@ export interface IncidentRecord {
 }
 
 export interface LoginResponse {
+
+  idUsuario: number;
+
+  idAlumno: number;
+
   nombre: string;
+
   rol: string;
+
   mensaje: string;
+
 }
 
 @Injectable({ providedIn: 'root' })
@@ -120,5 +151,42 @@ obtenerDashboard(): Observable<DashboardData> {
   return this.http.get<DashboardData>(
     'http://localhost:8081/api/dashboard'
   );
+}
+
+obtenerProgramaciones(): Observable<Programacion[]> {
+
+  return this.http.get<Programacion[]>(
+    `${this.baseUrl}/programaciones`
+  );
+
+}
+
+obtenerUbicacion(
+    idViaje: number
+): Observable<UbicacionBus> {
+
+    return this.http.get<UbicacionBus>(
+        `${this.baseUrl}/ubicaciones/${idViaje}`
+    );
+
+}
+
+
+  reservar(data:any){
+
+    return this.http.post(
+      `${this.baseUrl}/reservas`,
+      data
+    );
+
+  }
+
+  crearUsuario(data:any){
+
+  return this.http.post(
+    `${this.baseUrl}/usuarios`,
+    data
+  );
+
 }
 }

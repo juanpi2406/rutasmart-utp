@@ -41,26 +41,22 @@
         <input type="password" name="password" [(ngModel)]="password" placeholder="Contraseña" autocomplete="current-password" required />
       </label>
 
-      <div class="form-options">
-        <label><input type="checkbox" name="remember" [(ngModel)]="remember" /> Recordarme</label>
-        <button class="forgot-link button-link" type="button" (click)="setMode('forgot')">¿Olvidaste tu contraseña?</button>
-      </div>
+
 
       <button class="primary-button" type="submit" [disabled]="loading">{{ loading ? 'Validando...' : 'Iniciar sesión' }}</button>
+      <div class="demo-users">
 
-      <p class="divider-text">o continuar con</p>
+        <strong>
+          Acceso institucional
+        </strong>
 
-      <div class="social-row">
-        <button class="social-button" type="button" (click)="connectSocial('google')">
-          <span class="google-dot"></span><span>Google</span>
-        </button>
-        <button class="social-button" type="button" (click)="connectSocial('microsoft')">
-          <span class="microsoft-grid"><i></i><i></i><i></i><i></i></span><span>Microsoft</span>
-        </button>
+        <p>
+          Las cuentas son creadas únicamente por el administrador del sistema.
+        </p>
+
       </div>
 
-      <p class="contact-copy">¿No tienes cuenta? <button class="button-link inline-link" type="button" (click)="setMode('register')">Registrar estudiante</button></p>
-      <p class="toast" *ngIf="message">{{ message }}</p>
+
     </form>
 
     <form *ngIf="mode === 'register'" class="login-card register-card" (ngSubmit)="submitRegister()" novalidate>

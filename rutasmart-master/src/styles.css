@@ -1,3 +1,12 @@
+:root {
+  --blue: #155bc9;
+  --blue-dark: #073e9f;
+  --text: #20242c;
+  --muted: #9aa0aa;
+  --line: #d8dbe2;
+  --white: #ffffff;
+}
+
 * { box-sizing: border-box; }
 html, body { min-height: 100%; margin: 0; }
 body { font-family: "Inter", Arial, sans-serif; }

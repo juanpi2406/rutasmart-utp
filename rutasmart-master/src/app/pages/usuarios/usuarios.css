@@ -1,0 +1,153 @@
+:host {
+  --blue: #155bc9;
+  --blue-dark: #073e9f;
+  --text: #20242c;
+  --muted: #9aa0aa;
+  --line: #d8dbe2;
+  --white: #ffffff;
+  display: block;
+}
+
+* { box-sizing: border-box; }
+
+.usuarios-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+  background: var(--white, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--line, #d8dbe2);
+}
+
+.usuarios-container h1 {
+  color: var(--text, #20242c);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.usuarios-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1.5px solid var(--line, #d8dbe2);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text, #20242c);
+  background-color: #fafafa;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--blue, #155bc9);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(21, 91, 201, 0.12);
+}
+
+/* Secciones condicionales de roles */
+.dynamic-section {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px dashed var(--blue, #155bc9);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 5px;
+}
+
+.dynamic-section h3 {
+  font-size: 14px;
+  color: var(--blue, #155bc9);
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted, #9aa0aa);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* El botón aprovecha los estilos del botón principal de tu login */
+.form-submit {
+  width: 100%;
+  height: 51px;
+  border: 0;
+  border-radius: 9px;
+  color: #ffffff;
+  background: var(--blue, #155bc9);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(21, 91, 201, .16);
+  margin-top: 10px;
+  transition: background 0.2s ease;
+}
+
+.form-submit:hover {
+  background: var(--blue-dark, #073e9f);
+}
+
+
+/* ==========================================
+   ESTILO PARA EL BOTÓN SECUNDARIO
+   ========================================== */
+.secondary-button {
+  width: 100%;
+  height: 51px;
+  border: 1.5px solid var(--line, #d8dbe2);
+  border-radius: 9px;
+  color: var(--text, #20242c);
+  background: transparent;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.secondary-button:hover:not(:disabled) {
+  background-color: #f1f5f9;  /* Un gris muy suave */
+  border-color: var(--muted, #9aa0aa);
+  color: var(--blue, #155bc9); /* El texto cambia sutilmente al azul principal */
+}
+
+/* Efecto al hacer clic (Active) */
+.secondary-button:active:not(:disabled) {
+  transform: scale(0.98); /* Pequeña pulsación física */
+}
+
+/* Estado bloqueado / deshabilitado */
+.secondary-button:disabled,
+.secondary-button[disabled] {
+  cursor: not-allowed !important;
+  background: #f1f5f9 !important;
+  color: #cbd5e1 !important;
+  border-color: #e2e8f0 !important;
+  opacity: 0.7;
+}

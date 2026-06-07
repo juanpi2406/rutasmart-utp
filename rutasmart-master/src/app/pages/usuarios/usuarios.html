@@ -1,0 +1,151 @@
+<div class="usuarios-container">
+
+  <a
+  class="secondary-button"
+  routerLink="/dashboard">
+
+  ← Volver
+
+</a>
+  <h1>Gestión de Usuarios</h1>
+
+
+  <form (ngSubmit)="guardarUsuario()" class="usuarios-form">
+
+    <div class="form-group">
+      <input
+        type="text"
+        placeholder="Código"
+        [(ngModel)]="codigo"
+        name="codigo"
+        class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        placeholder="Nombres"
+        [(ngModel)]="nombres"
+        name="nombres"
+        class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input
+        type="text"
+        placeholder="Apellidos"
+        [(ngModel)]="apellidos"
+        name="apellidos"
+        class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input
+        type="email"
+        placeholder="Correo"
+        [(ngModel)]="correo"
+        name="correo"
+        class="form-input">
+    </div>
+
+    <div class="form-group">
+      <input
+        type="password"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+        name="password"
+        class="form-input">
+    </div>
+
+    <div class="form-group">
+      <select
+        [(ngModel)]="rol"
+        name="rol"
+        class="form-select">
+        <option value="ALUMNO">Alumno</option>
+        <option value="CHOFER">Chofer</option>
+        <option value="ADMIN">Administrador</option>
+      </select>
+    </div>
+
+    <div *ngIf="rol === 'ALUMNO'" class="dynamic-section">
+      <h3>Información de Alumno</h3>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Facultad"
+          [(ngModel)]="facultad"
+          name="facultad"
+          class="form-input">
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Sede"
+          [(ngModel)]="escuela"
+          name="escuela"
+          class="form-input">
+      </div>
+
+      <div class="form-group">
+        <input
+          type="number"
+          placeholder="Ciclo"
+          [(ngModel)]="ciclo"
+          name="ciclo"
+          class="form-input">
+      </div>
+    </div>
+
+    <div *ngIf="rol === 'CHOFER'" class="dynamic-section">
+      <h3>Información de Chofer</h3>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Licencia"
+          [(ngModel)]="licencia"
+          name="licencia"
+          class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Fecha de Vencimiento</label>
+        <input
+          type="date"
+          [(ngModel)]="fechaVencimiento"
+          name="fechaVencimiento"
+          class="form-input">
+      </div>
+    </div>
+
+    <button type="submit" class="form-submit">
+      Guardar Usuario
+    </button>
+    <div
+    *ngIf="usuarioGuardado"
+    class="success-box">
+
+    <h3>
+      ✅ Usuario creado correctamente
+    </h3>
+
+    <button
+      (click)="nuevoUsuario()">
+
+      Crear otro usuario
+
+    </button>
+
+    <button
+      (click)="volverDashboard()">
+
+      Volver al Dashboard
+
+    </button>
+
+  </div>
+
+  </form>
+
+</div>

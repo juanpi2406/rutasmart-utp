@@ -186,19 +186,37 @@ body {
   font-weight: 600;
 }
 
+/* 1. ESTADO NORMAL */
 .primary-button {
   width: 100%;
   height: 51px;
   border: 0;
   border-radius: 9px;
-  color: #fff;
-  background: var(--blue);
+  color: #ffffff;
+  background: #155bc9; /* O var(--blue) */
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(21, 91, 201, .16);
+  transition: background 0.2s ease, transform 0.1s ease; /* Para suavizar el cambio */
 }
-.primary-button:hover { background: var(--blue-dark); }
+
+/* 2. ESTADO HOVER (Solo si NO está deshabilitado) */
+.primary-button:hover:not(:disabled) {
+  background: #073e9f; /* O var(--blue-dark) */
+}
+
+/* 3. ESTADO BLOQUEADO / DESHABILITADO */
+.primary-button:disabled,
+.primary-button[disabled],
+.social-button:disabled {
+  cursor: not-allowed !important;
+  background: #d1d5db !important;  /* Un gris claro de fondo */
+  color: #9ca3af !important;     /* Texto gris más suave */
+  box-shadow: none !important;     /* Eliminamos la sombra para que se vea plano */
+  transform: none !important;
+  opacity: 1 !important;           /* Evita que el navegador le baje la opacidad por defecto */
+}
 
 .divider-text {
   margin: 23px 0 18px;
@@ -1151,11 +1169,7 @@ body {
   margin: 0;
 }
 
-.primary-button:disabled,
-.social-button:disabled {
-  opacity: .72;
-  cursor: not-allowed;
-}
+
 
 .inline-link {
   color: #155bc9;
@@ -1236,3 +1250,46 @@ body {
     font-size: 28px;
   }
 }
+
+
+
+.demo-users{
+
+  margin-top:20px;
+
+  padding:16px;
+
+  border-radius:10px;
+
+  background:#f5f8fd;
+
+  border:1px solid #dce6f8;
+
+  text-align:center;
+
+}
+
+.demo-users strong{
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#155bc9;
+
+  font-size:14px;
+
+}
+
+.demo-users p{
+
+  margin:0;
+
+  color:#666;
+
+  font-size:13px;
+
+  line-height:1.4;
+
+}
+

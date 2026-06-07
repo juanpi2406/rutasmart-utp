@@ -1,93 +1,96 @@
 <main class="dashboard-shell">
-    <aside class="sidebar">
-      <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
-        <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
-        </svg>
-        <span>RutaSmart</span>
-      </a>
-      <nav class="sidebar-nav" aria-label="Menú principal">
-        <a class="active" routerLink="/dashboard">Mi ruta</a>
-        <a routerLink="/perfil">Mi perfil</a>
-        <a routerLink="/incidencia">Reportar incidencia</a>
-        <a href="javascript:void(0)">Notificaciones</a>
-        <a routerLink="/reportes">Reportes</a>
-        <a href="javascript:void(0)">Ayuda</a>
-      </nav>
+
+  <!-- ========================================== -->
+  <!-- SIDEBAR (Compartido)                       -->
+  <!-- ========================================== -->
+  <aside class="sidebar">
+    <a class="sidebar-brand" routerLink="/dashboard" aria-label="RutaSmart">
+      <svg class="bus-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6.5 3h7.8c2.9 0 4.7 1.8 4.7 4.6v7.9c0 .9-.7 1.6-1.6 1.6h-.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1H8.2v1.1c0 .7-.6 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-1.1h-.2c-.9 0-1.6-.7-1.6-1.6V7.6C4 4.8 4.9 3 6.5 3Zm.1 2.1c-.7 0-1.2.6-1.2 1.4v4.6h13.2V6.5c0-1.6-.9-2.4-2.7-2.4H6.6Zm.9 12.4a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Zm9 0a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z" fill="currentColor"/>
+      </svg>
+      <span>RutaSmart</span>
+    </a>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard">Inicio</a>
+
+      <!-- Opciones Alumno -->
+      <a *ngIf="esAlumno" routerLink="/perfil">Mi perfil</a>
+      <a *ngIf="esAlumno" routerLink="/incidencia">Reportar incidencia</a>
+
+      <!-- Opciones Chofer -->
+      <a *ngIf="esChofer">Mis viajes</a>
+      <a *ngIf="esChofer">Actualizar ubicación</a>
+
+      <!-- Opciones Admin -->
+      <a *ngIf="esAdmin">Administración</a>
       <a
-    class="logout-link"
-    href="javascript:void(0)"
-    (click)="logout()">
+        *ngIf="esAdmin"
+        routerLink="/usuarios">
 
-    Cerrar sesión
+        Usuarios
 
-</a>
-    </aside>
+      </a>
+      <a *ngIf="esAdmin">Programaciones</a>
+    </nav>
 
-    <section class="dashboard-main">
-      <header class="dashboard-header">
+    <a class="logout-link" href="javascript:void(0)" (click)="logout()">
+      Cerrar sesión
+    </a>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- CONTENIDO PRINCIPAL                        -->
+  <!-- ========================================== -->
+  <section class="dashboard-main">
+
+    <!-- HEADER (Compartido) -->
+    <header class="dashboard-header">
       <div class="hello-copy">
-          <h1>¡Hola {{ nombre }}!</h1>
-          <p>Aquí tienes el resumen del transporte de hoy.</p>
+        <h1>¡Hola {{ nombre }}!</h1>
+        <p>Aquí tienes el resumen del transporte de hoy.</p>
       </div>
-        <div class="header-actions">
-          <button class="icon-button" type="button" aria-label="Notificaciones">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.6 2.6 0 0 0 2.5-2h-5a2.6 2.6 0 0 0 2.5 2Zm7-6.2-1.5-1.6V10a5.6 5.6 0 0 0-4.3-5.5V3a1.2 1.2 0 0 0-2.4 0v1.5A5.6 5.6 0 0 0 6.5 10v4.2L5 15.8V18h14v-2.2Z" fill="currentColor"/></svg>
-          </button>
-          <button class="icon-button" type="button" aria-label="Alertas">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.6C4 4.1 5.1 3 6.6 3h10.8C18.9 3 20 4.1 20 5.6v7.8c0 1.5-1.1 2.6-2.6 2.6H10l-4.5 3.2c-.6.4-1.5 0-1.5-.8V5.6Zm4 3.1h8v-2H8v2Zm0 4h5.8v-2H8v2Z" fill="currentColor"/></svg>
-          </button>
-          <div class="avatar" aria-label="Usuario"></div>
-        </div>
-      </header>
+      <div class="header-actions">
+        <button class="icon-button" type="button" aria-label="Notificaciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.6 2.6 0 0 0 2.5-2h-5a2.6 2.6 0 0 0 2.5 2Zm7-6.2-1.5-1.6V10a5.6 5.6 0 0 0-4.3-5.5V3a1.2 1.2 0 0 0-2.4 0v1.5A5.6 5.6 0 0 0 6.5 10v4.2L5 15.8V18h14v-2.2Z" fill="currentColor"/></svg>
+        </button>
+        <button class="icon-button" type="button" aria-label="Alertas">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.6C4 4.1 5.1 3 6.6 3h10.8C18.9 3 20 4.1 20 5.6v7.8c0 1.5-1.1 2.6-2.6 2.6H10l-4.5 3.2c-.6.4-1.5 0-1.5-.8V5.6Zm4 3.1h8v-2H8v2Zm0 4h5.8v-2H8v2Z" fill="currentColor"/></svg>
+        </button>
+        <div class="avatar" aria-label="Usuario"></div>
+      </div>
+    </header>
 
+    <!-- ===================================== -->
+    <!-- DASHBOARD ALUMNO                      -->
+    <!-- ===================================== -->
+    <ng-container *ngIf="esAlumno">
+
+      <!-- Resumen Alumno -->
       <section class="summary-grid" aria-label="Resumen">
         <article class="summary-card">
-    <h2>Mi ruta</h2>
-
-    <strong class="text-blue">
-        {{ ruta }}
-    </strong>
-
-    <p>
-        {{ paradero }}
-    </p>
-</article>
-       <article class="summary-card">
-    <h2>Próximo Bus</h2>
-
-    <strong>
-        {{ proximoBus }}
-    </strong>
-
-    <p>
-        En 5 minutos
-    </p>
-</article>
+          <h2>Mi ruta</h2>
+          <strong class="text-blue">{{ ruta }}</strong>
+          <p>{{ paradero }}</p>
+        </article>
         <article class="summary-card">
-    <h2>Estado del Bus</h2>
-
-    <strong class="text-green">
-        {{ estadoBus }}
-    </strong>
-
-    <p>
-        A {{ distancia }} de ti
-    </p>
-</article>
-       <article class="summary-card">
-    <h2>Tiempo estimado</h2>
-
-    <strong>
-        {{ tiempoEstimado }}
-    </strong>
-
-    <p>
-        Llegada a UTP
-    </p>
-</article>
+          <h2>Próximo Bus</h2>
+          <strong>{{ proximoBus }}</strong>
+          <p>En 5 minutos</p>
+        </article>
+        <article class="summary-card">
+          <h2>Estado del Bus</h2>
+          <strong class="text-green">{{ estadoBus }}</strong>
+          <p>A {{ distancia }} de ti</p>
+        </article>
+        <article class="summary-card">
+          <h2>Tiempo estimado</h2>
+          <strong>{{ tiempoEstimado }}</strong>
+          <p>Llegada a UTP</p>
+        </article>
       </section>
 
+      <!-- Mapa y Salidas Alumno -->
       <section class="content-row">
         <article class="map-card">
           <h2>Ubicación del Bus en tiempo real</h2>
@@ -103,7 +106,7 @@
               <circle cx="52" cy="313" r="13" fill="#155bc9" stroke="#fff" stroke-width="5"/>
               <circle cx="218" cy="231" r="13" fill="#155bc9" stroke="#fff" stroke-width="5"/>
               <circle cx="523" cy="144" r="13" fill="#155bc9" stroke="#fff" stroke-width="5"/>
-              <g transform="translate(671 100)">
+              <g [attr.transform]="'translate(' + busX + ' ' + busY + ')'">
                 <circle cx="24" cy="24" r="25" fill="#155bc9"/>
                 <path d="M13 15h18c3.5 0 5.5 2 5.5 5.2V31c0 1.2-.9 2.2-2.2 2.2h-.5v2c0 1-.8 1.7-1.7 1.7s-1.7-.7-1.7-1.7v-2H17.6v2c0 1-.8 1.7-1.7 1.7s-1.7-.7-1.7-1.7v-2h-.5c-1.3 0-2.2-1-2.2-2.2V20.2c0-3.2 2-5.2 5.5-5.2Zm1.6 4v8.1h20.8V19H14.6Zm2.4 14.1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm17.9 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="#fff"/>
               </g>
@@ -113,37 +116,245 @@
 
         <article class="departures-card">
           <h2>Próximas salidas</h2>
-<div class="timeline">
-
-    <div
-        class="time-item"
-        *ngFor="let salida of proximasSalidas">
-
-        <span></span>
-
-        <strong>
-            {{ salida }}
-        </strong>
-
-    </div>
-
-</div>
+          <div class="timeline">
+            <div class="time-item" *ngFor="let salida of proximasSalidas">
+              <span></span>
+              <strong>{{ salida }}</strong>
+            </div>
+          </div>
         </article>
       </section>
 
-   <footer class="dashboard-footer">
-    <div class="notice-title">
-        <span class="info-icon">i</span>
-        <strong>Avisos importantes</strong>
-    </div>
+      <!-- Viajes Disponibles (Sección de Reservas para Alumnos) -->
+      <section class="viajes-section">
+        <h2 class="section-title">
+          <div *ngIf="mensajeReserva" class="mensaje-reserva">
+            {{ mensajeReserva }}
+          </div>
+          🚍 Viajes Disponibles
+        </h2>
+        <div class="summary-grid">
+          <article class="summary-card" *ngFor="let p of programaciones">
+            <h2>{{ p.ruta }}</h2>
+            <p>🕖 {{ p.horaSalida }}</p>
+            <p>🏁 {{ p.horaLlegadaEstimada }}</p>
+            <p>📅 {{ p.diasOperacion }}</p>
+            <p>{{ p.estado ? '🟢 Activa' : '🔴 Inactiva' }}</p>
+            <button class="reserve-button" (click)="reservar(1)">
+              Reservar asiento
+            </button>
+          </article>
+        </div>
+      </section>
 
-    <div class="utp-logo static-logo" aria-label="UTP">
-        <span>U</span>
-        <span>T</span>
-        <span>P</span>
-    </div>
-</footer>
+      <!-- Footer exclusivo Alumno o general al final del flujo -->
+      <footer class="dashboard-footer">
+        <div class="notice-title">
+          <span class="info-icon">i</span>
+          <strong>Avisos importantes</strong>
+        </div>
+        <div class="utp-logo static-logo" aria-label="UTP">
+          <span>U</span><span>T</span><span>P</span>
+        </div>
+      </footer>
 
-</section>
+    </ng-container>
 
+<!-- ===================================== -->
+<!-- DASHBOARD CHOFER                      -->
+<!-- ===================================== -->
+<ng-container *ngIf="esChofer">
+
+  <!-- Resumen Chofer -->
+  <section class="summary-grid">
+
+    <article class="summary-card">
+      <h2>🚌 Bus Asignado</h2>
+
+      <strong>{{ placaBus }}</strong>
+
+      <p>{{ rutaChofer }}</p>
+    </article>
+
+    <article class="summary-card">
+      <h2>Estado de Ruta</h2>
+
+      <strong class="text-green">
+        {{ estadoRuta }}
+      </strong>
+
+      <p>Estado actual del servicio</p>
+    </article>
+
+    <article class="summary-card">
+      <h2>Viajes Realizados</h2>
+
+      <strong>{{ viajesHoyChofer }}</strong>
+
+      <p>Viajes completados hoy</p>
+    </article>
+
+    <article class="summary-card">
+      <h2>Ocupación</h2>
+
+      <strong>
+        {{ pasajerosActuales }} / {{ capacidadBus }}
+      </strong>
+
+      <p>Pasajeros abordo</p>
+    </article>
+
+  </section>
+
+  <!-- Controles -->
+  <section class="content-row">
+
+    <article class="summary-card">
+
+      <h2>Control de Ruta</h2>
+
+      <p>
+
+        Ruta:
+        <strong>{{ rutaChofer }}</strong>
+
+      </p>
+
+      <button
+        class="reserve-button"
+        (click)="iniciarRuta()">
+
+        ▶ Iniciar Ruta
+
+      </button>
+
+      <br><br>
+
+      <button
+        class="reserve-button"
+        (click)="finalizarRuta()">
+
+        ⏹ Finalizar Ruta
+
+      </button>
+
+    </article>
+
+    <article class="summary-card">
+
+      <h2>Ubicación Actual</h2>
+
+      <p>📍 Latitud: {{ latitud }}</p>
+
+      <p>📍 Longitud: {{ longitud }}</p>
+
+      <p>🚍 Velocidad: {{ velocidad }} km/h</p>
+
+      <button
+        class="reserve-button"
+        (click)="actualizarUbicacion()">
+
+        Actualizar Ubicación
+
+      </button>
+
+    </article>
+
+  </section>
+
+  <!-- Información Operativa -->
+  <section class="summary-grid">
+
+    <article class="summary-card">
+
+      <h2>Próxima Salida</h2>
+
+      <strong>{{ proximaSalida }}</strong>
+
+      <p>Horario programado</p>
+
+    </article>
+
+    <article class="summary-card">
+
+      <h2>Reservas</h2>
+
+      <strong>{{ reservasConfirmadas }}</strong>
+
+      <p>Alumnos registrados</p>
+
+    </article>
+
+    <article class="summary-card">
+
+      <h2>Paradero Actual</h2>
+
+      <strong>{{ paraderoActual }}</strong>
+
+      <p>Último punto registrado</p>
+
+    </article>
+
+    <article class="summary-card">
+
+      <h2>Incidencias</h2>
+
+      <strong>{{ incidenciasPendientes }}</strong>
+
+      <p>Pendientes de revisión</p>
+
+    </article>
+
+  </section>
+
+</ng-container>
+
+    <!-- ===================================== -->
+    <!-- DASHBOARD ADMIN                       -->
+    <!-- ===================================== -->
+    <ng-container *ngIf="esAdmin">
+
+      <!-- Métricas Principales -->
+      <section class="summary-grid">
+        <article class="summary-card">
+          <h2>👨‍🎓 Alumnos</h2>
+          <strong>{{ totalAlumnos }}</strong>
+        </article>
+        <article class="summary-card">
+          <h2>🚌 Buses</h2>
+          <strong>{{ totalBuses }}</strong>
+        </article>
+        <article class="summary-card">
+          <h2>🛣 Rutas</h2>
+          <strong>{{ totalRutas }}</strong>
+        </article>
+        <article class="summary-card">
+          <h2>🎫 Reservas</h2>
+          <strong>{{ totalReservas }}</strong>
+        </article>
+      </section>
+
+      <!-- Métricas Operativas -->
+      <section class="summary-grid">
+        <article class="summary-card">
+          <h2>Paradero más usado</h2>
+          <strong>{{ paraderoTop }}</strong>
+        </article>
+        <article class="summary-card">
+          <h2>Paradero menos usado</h2>
+          <strong>{{ paraderoMenosUsado }}</strong>
+        </article>
+        <article class="summary-card">
+          <h2>Incidencias</h2>
+          <strong>{{ totalIncidencias }}</strong>
+        </article>
+        <article class="summary-card">
+          <h2>Viajes Hoy</h2>
+          <strong>{{ viajesHoy }}</strong>
+        </article>
+      </section>
+
+    </ng-container>
+
+  </section>
 </main>

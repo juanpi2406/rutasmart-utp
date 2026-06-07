@@ -59,6 +59,16 @@ export class LoginComponent {
 
   if (response.mensaje === 'Login exitoso') {
 
+  localStorage.setItem(
+    'rutasmart.idUsuario',
+    String(response.idUsuario)
+  );
+
+  localStorage.setItem(
+    'rutasmart.idAlumno',
+    String(response.idAlumno)
+  );
+
     localStorage.setItem('rutasmart.email', this.email);
 
     localStorage.setItem(
