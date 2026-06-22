@@ -17,6 +17,9 @@
       <!-- Opciones Alumno -->
       <a *ngIf="esAlumno" routerLink="/perfil">Mi perfil</a>
       <a *ngIf="esAlumno" routerLink="/incidencia">Reportar incidencia</a>
+      <a *ngIf="esAlumno" routerLink="/reservas">
+        Reservar viaje
+      </a>
 
       <!-- Opciones Chofer -->
       <a *ngIf="esChofer">Mis viajes</a>
@@ -125,7 +128,7 @@
         </article>
       </section>
 
-      <!-- Viajes Disponibles (Sección de Reservas para Alumnos) -->
+      <!-- Viajes Disponibles (Sección de Reservas para Alumnos)
       <section class="viajes-section">
         <h2 class="section-title">
           <div *ngIf="mensajeReserva" class="mensaje-reserva">
@@ -145,7 +148,7 @@
             </button>
           </article>
         </div>
-      </section>
+      </section> -->
 
       <!-- Footer exclusivo Alumno o general al final del flujo -->
       <footer class="dashboard-footer">

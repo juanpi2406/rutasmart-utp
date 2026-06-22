@@ -129,7 +129,7 @@ ngOnInit(): void {
 
 
 
-  this.api.obtenerUbicacion(1)
+ /* this.api.obtenerUbicacion(1)
     .subscribe({
 
       next: (data) => {
@@ -155,7 +155,7 @@ ngOnInit(): void {
 
       }
 
-    });
+    });*/
 
 
     this.rol =

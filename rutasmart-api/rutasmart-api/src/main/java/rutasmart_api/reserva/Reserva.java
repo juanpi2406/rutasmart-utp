@@ -21,6 +21,9 @@ public class Reserva {
     @Column(name = "fecha_reserva")
     private LocalDateTime fechaReserva;
 
+    @Column(name = "id_paradero")
+    private Long idParadero;
+
     private String estado;
 
     public Long getIdReserva() {
@@ -62,4 +65,13 @@ public class Reserva {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+     public Long getIdParadero() {
+        return idParadero;
+    }
+
+    public void setIdParadero(Long idParadero) {
+        this.idParadero = idParadero;
+    }
+    
 }

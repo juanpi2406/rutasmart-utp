@@ -1,0 +1,104 @@
+<div class="reservas-container">
+
+    <h1>
+        Disponibilidad de Viajes
+    </h1>
+
+    <p class="mensaje"
+       *ngIf="mensaje">
+
+       {{mensaje}}
+
+    </p>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Fecha</th>
+            <th>Salida</th>
+            <th>Llegada</th>
+            <th>Estado</th>
+            <th>Capacidad</th>
+            <th>Paradero</th>
+             <th>Acción</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+<tr *ngFor="let viaje of viajes">
+
+    <td>
+        {{viaje.fechaViaje}}
+    </td>
+
+    <td>
+        {{viaje.horaSalida}}
+    </td>
+
+    <td>
+        {{viaje.horaLlegada}}
+    </td>
+
+    <td>
+        {{viaje.estado}}
+    </td>
+
+    <td>
+        {{viaje.cuposDisponibles}}
+        /
+        {{viaje.capacidadTotal}}
+    </td>
+
+    <td>
+
+        <select
+        class="paradero-select"
+        [(ngModel)]="
+          paraderosSeleccionados[viaje.idViaje]
+        ">
+
+            <option [ngValue]="null">
+                Seleccione
+            </option>
+
+            <option
+            *ngFor="let p of paraderos"
+            [ngValue]="p.idParadero">
+
+                {{p.nombre}}
+
+            </option>
+
+        </select>
+
+    </td>
+
+    <td>
+
+        <button
+        [disabled]="viaje.cuposDisponibles === 0"
+        (click)="reservar(viaje.idViaje)">
+
+            {{
+              viaje.cuposDisponibles === 0
+                ? 'Completo'
+                : 'Reservar'
+            }}
+
+        </button>
+
+    </td>
+
+</tr>
+
+</tbody>
+
+    </table>
+
+</div>

@@ -13,6 +13,24 @@ export interface DashboardData {
   proximasSalidas: string[];
 }
 
+
+
+export interface ViajeDisponible {
+
+  idViaje:number;
+
+  fechaViaje:string;
+
+  horaSalida:string;
+
+  horaLlegada:string;
+
+  estado:string;
+
+  capacidad:number;
+
+}
+
 export interface Programacion {
   ruta: string;
   horaSalida: string;
@@ -189,4 +207,37 @@ obtenerUbicacion(
   );
 
 }
+obtenerViajesDisponibles(){
+
+  return this.http.get(
+    `${this.baseUrl}/viajes/disponibles`
+  );
+
+}
+
+reservarViaje(
+  idAlumno:number,
+  idViaje:number,
+  idParadero:number
+){
+
+  return this.http.post(
+    `${this.baseUrl}/reservas`,
+    {
+      idAlumno,
+      idViaje,
+      idParadero
+    }
+  );
+
+}
+
+obtenerParaderos(){
+
+  return this.http.get(
+    `${this.baseUrl}/paraderos/ruta/1`
+  );
+
+}
+
 }
